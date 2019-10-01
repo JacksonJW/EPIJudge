@@ -6,7 +6,7 @@ def look_and_say(n):
     if n < 1:
         return ""
     prev_str = "1"
-    new_str = ""
+    new_str_list = []
     look_say_table = {}
     look_say_index = 1
     while look_say_index < n:
@@ -17,14 +17,14 @@ def look_and_say(n):
                 j += 1
             look = prev_str[i:j]
             if look in look_say_table:
-                new_str += look_say_table[look]
+                new_str_list.append(look_say_table[look])
             else:
                 say = str(len(look)) + prev_str[i]
                 look_say_table[look] = say
-                new_str += say
+                new_str_list.append(say)
             i = j
-        prev_str = new_str
-        new_str = ""
+        prev_str = ''.join(new_str_list)
+        new_str_list = []
         look_say_index += 1
     return prev_str
 
