@@ -7,7 +7,26 @@ from test_framework.test_utils import enable_executor_hook
 
 
 def lca(node0, node1):
-    # TODO - you fill in here.
+    node0_ptr, node1_ptr = node0, node1
+    node0_set, node1_set = set(), set()
+
+    while node0_ptr or node1_ptr:
+        if node0_ptr is node1_ptr:
+            return node0_ptr
+        elif node0_ptr and node0_ptr in node1_set:
+            return node0_ptr
+        elif node1_ptr and node1_ptr in node0_set:
+            return node1_ptr
+        else:
+            if node0_ptr and node0_ptr not in node0_set:
+                node0_set.add(node0_ptr)
+            if node1_ptr and node1_ptr not in node1_set:
+                node1_set.add(node1_ptr)
+            if node0_ptr.parent:
+                node0_ptr = node0_ptr.parent
+            if node1_ptr.parent:
+                node1_ptr = node1_ptr.parent
+
     return None
 
 
